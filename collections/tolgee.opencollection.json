@@ -1,0 +1,292 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tolgee API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{apiKey}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the current API key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/api-keys/current"
+          },
+          "docs": "Returns information about the Project API key used to authenticate the request."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List projects.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/projects"
+          },
+          "docs": "Returns a paginated list of projects the caller can access."
+        },
+        {
+          "info": {
+            "name": "Create a project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.tolgee.io/v2/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new localization project."
+        },
+        {
+          "info": {
+            "name": "Get a project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/projects/{projectId}"
+          },
+          "docs": "Returns a single project by id."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List keys.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/projects/{projectId}/keys"
+          },
+          "docs": "Returns a paginated list of translation keys in a project."
+        },
+        {
+          "info": {
+            "name": "Create a key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.tolgee.io/v2/projects/{projectId}/keys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a key and optionally its translations."
+        },
+        {
+          "info": {
+            "name": "Import keys.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.tolgee.io/v2/projects/{projectId}/keys/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk-creates keys with translations."
+        },
+        {
+          "info": {
+            "name": "Search for keys.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/projects/{projectId}/keys/search"
+          },
+          "docs": "Searches keys by name with an optional language tag."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Translations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get translations in project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/projects/{projectId}/translations"
+          },
+          "docs": "Returns a paginated, filterable view of keys and their translations."
+        },
+        {
+          "info": {
+            "name": "Create a key or update its translations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.tolgee.io/v2/projects/{projectId}/translations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a key if it does not exist and sets its translations."
+        },
+        {
+          "info": {
+            "name": "Update translations for an existing key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.tolgee.io/v2/projects/{projectId}/translations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates translations for an existing key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Languages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List languages.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/projects/{projectId}/languages"
+          },
+          "docs": "Returns the languages configured for a project."
+        },
+        {
+          "info": {
+            "name": "Create a language.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.tolgee.io/v2/projects/{projectId}/languages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a language (locale) to a project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Import/Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export translations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/projects/export"
+          },
+          "docs": "Exports the current project's translations as a ZIP of localization files."
+        },
+        {
+          "info": {
+            "name": "Add files to import.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.tolgee.io/v2/projects/{projectId}/import",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Uploads translation files to begin the import process."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Screenshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List screenshots for a key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/projects/{projectId}/keys/{keyId}/screenshots"
+          },
+          "docs": "Lists screenshots attached to a key."
+        },
+        {
+          "info": {
+            "name": "Upload a screenshot for a key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.tolgee.io/v2/projects/{projectId}/keys/{keyId}/screenshots",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Uploads a screenshot to give translators visual context."
+        }
+      ]
+    }
+  ]
+}

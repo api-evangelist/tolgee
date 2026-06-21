@@ -1,0 +1,108 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Tolgee
+providerId: tolgee
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: true
+tags:
+- Localization
+- i18n
+- Translation
+- Open Source
+- Developer Tools
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Tolgee spend. Tolgee can be run two ways with very different
+  cost profiles. Self-hosted open source carries no Tolgee license fee for up to
+  10 seats with unlimited keys - cost is the operator's own infrastructure
+  (compute, database, storage) plus any external machine-translation provider
+  charges. Tolgee Cloud is a subscription billed by tier (Free, Team, Business,
+  Advanced, Enterprise) with metered overages on translation keys, seats, and
+  machine-translation (MT) credits. Optimizing Tolgee spend means right-sizing
+  the plan to key/seat counts and managing MT/AI credit burn.
+notes: >-
+  Self-hosted open source has no Tolgee subscription cost up to 10 seats; cloud
+  costs are driven by plan tier plus key, seat, and MT-credit overages. Verify
+  current rates at tolgee.io/pricing.
+sources:
+- https://tolgee.io/pricing
+- https://tolgee.io/pricing/self-hosted
+- https://docs.tolgee.io/platform/self_hosting/licensing
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Tolgee
+serviceCategory: Developer Tools and Localization
+billingModel:
+  pricingCategory: Subscription and Usage-Based
+  billingFrequency: Monthly or Annual
+  billingCurrency: EUR
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Tolgee Cloud
+  ServiceCategory: Developer Tools and Localization
+  ProviderName: Tolgee
+  PublisherName: Tolgee
+  InvoiceIssuerName: Tolgee
+  BillingCurrency: EUR
+  ChargeCategory: Usage
+  PricingCategory: Subscription and Usage-Based
+meters:
+- name: subscription_tier
+  description: Recurring Cloud subscription fee for the selected plan (Team, Business, Advanced).
+  unit: months
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: translation_keys
+  description: Translation keys against the plan allowance; overage billed per key. A key counts once across all languages.
+  unit: keys
+  aggregation: max
+  dimensions:
+  - account
+  - project
+- name: seats
+  description: Team member seats against the plan allowance; overage billed per seat.
+  unit: seats
+  aggregation: max
+  dimensions:
+  - account
+- name: mt_credits
+  description: Machine-translation credits consumed (~1 per character for MT providers; LLM-token-based for AI Translator/Playground).
+  unit: credits
+  aggregation: sum
+  dimensions:
+  - account
+  - project
+  - provider
+- name: self_hosted_infrastructure
+  description: Operator-borne compute, database, and storage cost for a self-hosted open-source deployment (no Tolgee license fee up to 10 seats).
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - account
+  - environment
+principles:
+- name: Visibility
+  description: Track key counts, seat counts, and MT-credit burn per project; for self-hosted, attribute infrastructure cost to the Tolgee deployment.
+- name: Allocation
+  description: Map projects and seats to teams/cost centers; tag MT-credit usage by provider and project.
+- name: Optimization
+  description: Right-size the Cloud plan to actual key/seat usage; archive unused keys; prefer self-hosting up to 10 seats when infra cost is lower than subscription; limit AI/MT credit spend by reserving auto-translation for high-value locales.
+- name: Accountability
+  description: Assign owners per project; review subscription tier, overages, and MT-credit consumption monthly against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

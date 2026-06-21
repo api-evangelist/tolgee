@@ -1,0 +1,68 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Tolgee
+providerId: tolgee
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Localization
+- i18n
+- Translation
+- Open Source
+- Developer Tools
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Tolgee does not publish a single fixed numeric REST API rate-limit table.
+  On self-hosted open-source deployments, throughput is bounded only by the
+  operator's own infrastructure and any reverse-proxy limits they configure.
+  On Tolgee Cloud (app.tolgee.io), practical limits are governed by plan
+  quotas - translation keys, seats, and machine-translation (MT) credits -
+  rather than by a published requests-per-second ceiling, and Tolgee may apply
+  abuse-protection throttling. Treat the values below as quota-style limits and
+  verify specifics with Tolgee for high-volume automation.
+notes: >-
+  Self-hosted instances have no Tolgee-imposed request quota; cloud usage is
+  primarily constrained by key, seat, and MT-credit plan quotas. Confirm any
+  hard per-second API limits directly with Tolgee for production automation.
+sources:
+- https://docs.tolgee.io/api
+- https://docs.tolgee.io/platform/account_settings/api_keys_and_pat_tokens
+- https://tolgee.io/pricing
+- https://tolgee.io/pricing/self-hosted
+responseCodes:
+  throttled: 429
+limits:
+- name: Translation Keys (quota)
+  scope: account
+  metric: keys
+  limit: per plan (e.g. 500 Free, 2000 Team, 5000 Business, 20000 Advanced)
+  notes: A key is counted once regardless of how many languages it is translated into.
+- name: Seats (quota)
+  scope: account
+  metric: seats
+  limit: per plan (e.g. 3 Free, 4 Team, 8 Business, 20 Advanced; up to 10 self-hosted free)
+  notes: Number of team members who can access projects.
+- name: MT Credits (quota)
+  scope: account
+  metric: credits
+  limit: per plan (e.g. 10000 included on Free)
+  notes: Roughly 1 credit per translated character for MT providers; LLM token-based for AI features.
+- name: REST API Requests
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: No fixed published per-second/per-minute limit; cloud may apply abuse-protection throttling, self-hosted bound by operator infrastructure.
+policies:
+- name: Plan Quotas
+  description: Cloud usage is gated by key, seat, and MT-credit allowances per subscription tier; overages are billed pay-as-you-go where a card is on file.
+- name: Self-Hosted Operator Control
+  description: Open-source self-hosted deployments enforce only the limits the operator configures at the proxy or application layer.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on HTTP 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,272 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Tolgee
+providerId: tolgee
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: true
+tags:
+- Localization
+- i18n
+- Translation
+- Open Source
+- Developer Tools
+- Plans
+description: >-
+  Tolgee is open source and can be self-hosted for free (unlimited translation
+  keys, up to 10 seats; advanced features and support require a licensed
+  self-hosted plan negotiated with sales). Tolgee Cloud (app.tolgee.io) offers a
+  free tier plus seat- and key-based paid tiers (Team, Business, Advanced) and a
+  contact-sales Enterprise tier. Plans are metered primarily by translation keys
+  (a key is counted once regardless of how many languages it is translated into),
+  team seats, and machine-translation (MT) credits. Prices below are the
+  published annual-billing monthly equivalents and may change; verify on the
+  Tolgee pricing page.
+notes: >-
+  Cloud prices reflect annual billing. MT credits meter machine and AI
+  translation: roughly 1 credit per translated character for MT providers, and
+  for AI Translator/Playground per LLM token (about 0.08 credit per input token,
+  0.3 credit per output token). Verify current numbers at tolgee.io/pricing.
+sources:
+- https://tolgee.io/pricing
+- https://tolgee.io/pricing/self-hosted
+- https://docs.tolgee.io/platform/self_hosting/licensing
+- https://docs.tolgee.io/api
+plans:
+- id: tolgee-self-hosted-free
+  name: Self-Hosted (Open Source)
+  type: free
+  description: >-
+    Free, self-hosted open-source Tolgee deployed via Docker. Unlimited
+    translation keys and up to 10 seats. Advanced/enterprise features and
+    support are not included.
+  entries:
+  - label: Translation Keys
+    name: keys
+    type: usage
+    metric: keys
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  - label: Seats
+    name: seats
+    type: flat
+    metric: seats
+    limit: 10
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free up to 10 seats
+    userMultiplied: false
+  elements:
+  - name: Projects
+  - name: Keys
+  - name: Translations
+  - name: Languages
+  - name: Import/Export
+  - name: Screenshots
+  - name: REST API
+- id: tolgee-cloud-free
+  name: Cloud Free
+  type: free
+  description: >-
+    Free Tolgee Cloud tier with no credit card required. Includes a limited
+    number of keys, seats, and MT credits to evaluate the platform.
+  entries:
+  - label: Included Keys
+    name: keys
+    type: flat
+    metric: keys
+    limit: 500
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  - label: Seats
+    name: seats
+    type: flat
+    metric: seats
+    limit: 3
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  - label: MT Credits
+    name: mt_credits
+    type: flat
+    metric: credits
+    limit: 10000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: Projects
+  - name: Keys
+  - name: Translations
+  - name: Languages
+  - name: Import/Export
+  - name: Screenshots
+  - name: REST API
+- id: tolgee-cloud-team
+  name: Cloud Team
+  type: paid
+  description: >-
+    Entry paid Cloud tier for small teams. Approx EUR 49 / month billed
+    annually with included keys and seats; usage beyond the included limits is
+    billed pay-as-you-go.
+  entries:
+  - label: Subscription
+    name: subscription
+    type: flat
+    metric: month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~EUR 49/month (annual)
+    userMultiplied: false
+  - label: Included Keys
+    name: keys
+    type: flat
+    metric: keys
+    limit: 2000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Seats
+    name: seats
+    type: flat
+    metric: seats
+    limit: 4
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: Everything in Free
+  - name: Pay-as-you-go Overages
+- id: tolgee-cloud-business
+  name: Cloud Business
+  type: paid
+  description: >-
+    Mid-tier Cloud plan, approx EUR 179 / month billed annually, adding AI
+    translator and brand context, glossaries, AI playground, tasks, branching,
+    and granular permissions.
+  entries:
+  - label: Subscription
+    name: subscription
+    type: flat
+    metric: month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~EUR 179/month (annual)
+    userMultiplied: false
+  - label: Included Keys
+    name: keys
+    type: flat
+    metric: keys
+    limit: 5000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Seats
+    name: seats
+    type: flat
+    metric: seats
+    limit: 8
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: AI Translator and Brand Context
+  - name: Glossaries
+  - name: AI Playground
+  - name: Tasks
+  - name: Branching
+  - name: Granular Permissions
+- id: tolgee-cloud-advanced
+  name: Cloud Advanced
+  type: paid
+  description: >-
+    Higher-volume Cloud plan, approx EUR 499 / month billed annually, adding
+    professional translation and translation memory management on top of
+    Business features.
+  entries:
+  - label: Subscription
+    name: subscription
+    type: flat
+    metric: month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~EUR 499/month (annual)
+    userMultiplied: false
+  - label: Included Keys
+    name: keys
+    type: flat
+    metric: keys
+    limit: 20000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Seats
+    name: seats
+    type: flat
+    metric: seats
+    limit: 20
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: Everything in Business
+  - name: Professional Translation
+  - name: Translation Memory Management
+- id: tolgee-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Contact-sales tier (Cloud or licensed self-hosted) with premium support,
+    single sign-on, dedicated Slack channel, account manager, team training,
+    prioritized feature requests, and compliance (ISO 27001, GDPR).
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Single Sign-On
+  - name: Premium Support
+  - name: Dedicated Account Manager
+  - name: Licensed Self-Hosting
+  - name: Compliance (ISO 27001, GDPR)
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

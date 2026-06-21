@@ -1,0 +1,82 @@
+aid: tolgee
+name: Tolgee
+review:
+  question: Does Tolgee expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Tolgee's public, documented integration
+    surface is a REST (HTTPS) API under /v2 on https://app.tolgee.io (or the
+    operator's self-hosted host). No documented WebSocket or Server-Sent Events
+    (SSE) streaming surface was found for the public REST API, so there is no
+    event-driven transport to model.
+findings:
+  summary: |
+    Tolgee does not publish a documented public WebSocket API. Tolgee is an
+    open-source localization platform whose public integration surface is a
+    REST (HTTPS) API rooted at /v2 (e.g. https://app.tolgee.io/v2/...),
+    authenticated with a Project API key (tgpak_ prefix) in the X-API-Key
+    header, or with a Personal Access Token (tgpat_), or a JWT. The platform
+    uses real-time UI features internally, but no public, documented ws:// or
+    wss:// endpoint is described in the REST API reference for projects, keys,
+    translations, languages, import/export, or screenshots. The same REST API
+    is served by both Tolgee Cloud and self-hosted open-source instances.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://app.tolgee.io
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No public WebSocket endpoint is documented in the Tolgee REST API reference as of the review date.
+  endpointsConfirmedRest:
+    - GET  https://app.tolgee.io/v2/api-keys/current
+    - GET  https://app.tolgee.io/v2/projects
+    - POST https://app.tolgee.io/v2/projects
+    - GET  https://app.tolgee.io/v2/projects/{projectId}
+    - GET  https://app.tolgee.io/v2/projects/{projectId}/keys
+    - POST https://app.tolgee.io/v2/projects/{projectId}/keys
+    - POST https://app.tolgee.io/v2/projects/{projectId}/keys/import
+    - GET  https://app.tolgee.io/v2/projects/{projectId}/keys/search
+    - GET  https://app.tolgee.io/v2/projects/{projectId}/translations
+    - PUT  https://app.tolgee.io/v2/projects/{projectId}/translations
+    - POST https://app.tolgee.io/v2/projects/{projectId}/translations
+    - GET  https://app.tolgee.io/v2/projects/{projectId}/languages
+    - POST https://app.tolgee.io/v2/projects/{projectId}/languages
+    - GET  https://app.tolgee.io/v2/projects/export
+    - POST https://app.tolgee.io/v2/projects/{projectId}/import
+    - POST https://app.tolgee.io/v2/projects/{projectId}/keys/{keyId}/screenshots
+authentication:
+  - scheme: X-API-Key
+    note: Project API key prefixed tgpak_, scoped to a single project, passed in the X-API-Key header (preferred over the deprecated ak query param).
+  - scheme: Personal Access Token
+    note: User-scoped token prefixed tgpat_, passed in the X-API-Key header.
+  - scheme: Bearer JWT
+    note: Browser/session JWT used by the Tolgee frontend.
+sources:
+  - url: https://docs.tolgee.io/api
+    type: APIReference
+    note: REST API reference; all documented endpoints are HTTPS REST under /v2.
+  - url: https://docs.tolgee.io/platform/account_settings/api_keys_and_pat_tokens
+    type: Documentation
+    note: Describes X-API-Key auth with tgpak_ project keys and tgpat_ PATs; example GET /v2/api-keys/current.
+  - url: https://docs.tolgee.io/platform/projects_and_organizations/export
+    type: Documentation
+    note: Documents GET /v2/projects/export with X-API-Key; REST, not WebSocket.
+  - url: https://github.com/tolgee/tolgee-platform
+    type: SourceCode
+    note: Open-source platform; same REST API on self-hosted and cloud.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No public WebSocket or SSE transport is documented for Tolgee's REST API,
+    so no AsyncAPI artifact was authored. The apis.yml catalogs the documented
+    REST surface (projects, keys, translations, languages, import/export,
+    screenshots) with an OpenAPI 3.0.1 specification.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

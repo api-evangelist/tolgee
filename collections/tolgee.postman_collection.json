@@ -1,0 +1,537 @@
+{
+  "item": [
+    {
+      "id": "f1a0e001-0000-4000-8000-000000000001",
+      "name": "API Keys",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000101",
+          "name": "Get the current API key.",
+          "request": {
+            "name": "Get the current API key.",
+            "description": {},
+            "url": {
+              "path": ["v2", "api-keys", "current"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f1a0e001-0000-4000-8000-000000000002",
+      "name": "Projects",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000201",
+          "name": "List projects.",
+          "request": {
+            "name": "List projects.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects"],
+              "host": ["{{baseUrl}}"],
+              "query": [
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "20" }
+              ],
+              "variable": []
+            },
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000202",
+          "name": "Create a project.",
+          "request": {
+            "name": "Create a project.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"baseLanguageTag\": \"en\",\n  \"languages\": [\n    { \"name\": \"English\", \"tag\": \"en\" }\n  ]\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000203",
+          "name": "Get a project.",
+          "request": {
+            "name": "Get a project.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", ":projectId"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "projectId", "value": "<long>" }
+              ]
+            },
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f1a0e001-0000-4000-8000-000000000003",
+      "name": "Keys",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000301",
+          "name": "List keys.",
+          "request": {
+            "name": "List keys.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", ":projectId", "keys"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "projectId", "value": "<long>" }
+              ]
+            },
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000302",
+          "name": "Create a key.",
+          "request": {
+            "name": "Create a key.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", ":projectId", "keys"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "projectId", "value": "<long>" }
+              ]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"home.title\",\n  \"namespace\": \"<string>\",\n  \"translations\": {\n    \"en\": \"Welcome\"\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000303",
+          "name": "Import keys.",
+          "request": {
+            "name": "Import keys.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", ":projectId", "keys", "import"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "projectId", "value": "<long>" }
+              ]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"keys\": [\n    { \"name\": \"home.title\", \"translations\": { \"en\": \"Welcome\" } }\n  ]\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000304",
+          "name": "Search for keys.",
+          "request": {
+            "name": "Search for keys.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", ":projectId", "keys", "search"],
+              "host": ["{{baseUrl}}"],
+              "query": [
+                { "key": "search", "value": "<string>" },
+                { "key": "languageTag", "value": "en" }
+              ],
+              "variable": [
+                { "key": "projectId", "value": "<long>" }
+              ]
+            },
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f1a0e001-0000-4000-8000-000000000004",
+      "name": "Translations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000401",
+          "name": "Get translations in project.",
+          "request": {
+            "name": "Get translations in project.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", ":projectId", "translations"],
+              "host": ["{{baseUrl}}"],
+              "query": [
+                { "key": "languages", "value": "en" },
+                { "key": "filterState", "value": "UNTRANSLATED" }
+              ],
+              "variable": [
+                { "key": "projectId", "value": "<long>" }
+              ]
+            },
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000402",
+          "name": "Create a key or update its translations.",
+          "request": {
+            "name": "Create a key or update its translations.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", ":projectId", "translations"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "projectId", "value": "<long>" }
+              ]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"home.title\",\n  \"translations\": {\n    \"en\": \"Welcome\",\n    \"de\": \"Willkommen\"\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000403",
+          "name": "Update translations for an existing key.",
+          "request": {
+            "name": "Update translations for an existing key.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", ":projectId", "translations"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "projectId", "value": "<long>" }
+              ]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"home.title\",\n  \"translations\": {\n    \"en\": \"Welcome back\"\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f1a0e001-0000-4000-8000-000000000005",
+      "name": "Languages",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000501",
+          "name": "List languages.",
+          "request": {
+            "name": "List languages.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", ":projectId", "languages"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "projectId", "value": "<long>" }
+              ]
+            },
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000502",
+          "name": "Create a language.",
+          "request": {
+            "name": "Create a language.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", ":projectId", "languages"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "projectId", "value": "<long>" }
+              ]
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"German\",\n  \"tag\": \"de\",\n  \"originalName\": \"Deutsch\",\n  \"flagEmoji\": \"\\uD83C\\uDDE9\\uD83C\\uDDEA\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f1a0e001-0000-4000-8000-000000000006",
+      "name": "Import/Export",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000601",
+          "name": "Export translations.",
+          "request": {
+            "name": "Export translations.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", "export"],
+              "host": ["{{baseUrl}}"],
+              "query": [
+                { "key": "format", "value": "JSON" },
+                { "key": "zip", "value": "true" }
+              ],
+              "variable": []
+            },
+            "header": [
+              { "key": "Accept", "value": "application/zip" }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000602",
+          "name": "Add files to import.",
+          "request": {
+            "name": "Add files to import.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", ":projectId", "import"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "projectId", "value": "<long>" }
+              ]
+            },
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "files", "type": "file", "src": [] }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f1a0e001-0000-4000-8000-000000000007",
+      "name": "Screenshots",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000701",
+          "name": "List screenshots for a key.",
+          "request": {
+            "name": "List screenshots for a key.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", ":projectId", "keys", ":keyId", "screenshots"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "projectId", "value": "<long>" },
+                { "key": "keyId", "value": "<long>" }
+              ]
+            },
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "f1a0e001-0000-4000-8000-000000000702",
+          "name": "Upload a screenshot for a key.",
+          "request": {
+            "name": "Upload a screenshot for a key.",
+            "description": {},
+            "url": {
+              "path": ["v2", "projects", ":projectId", "keys", ":keyId", "screenshots"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "projectId", "value": "<long>" },
+                { "key": "keyId", "value": "<long>" }
+              ]
+            },
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "screenshot", "type": "file", "src": [] }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.tolgee.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "X-API-Key" },
+      { "key": "value", "value": "{{apiKey}}" },
+      { "key": "in", "value": "header" }
+    ]
+  },
+  "info": {
+    "_postman_id": "f1a0e001-0000-4000-8000-0000000000aa",
+    "name": "Tolgee API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Subset of the Tolgee localization platform REST API (projects, keys, translations, languages, import/export, screenshots). Authenticated with a Project API key (tgpak_ prefix) in the X-API-Key header.\n\nContact Support:\n Name: Tolgee Support\n Email: support@tolgee.io",
+      "type": "text/plain"
+    }
+  }
+}

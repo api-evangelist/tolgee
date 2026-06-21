@@ -1,0 +1,143 @@
+aid: tolgee
+url: https://raw.githubusercontent.com/api-evangelist/tolgee/refs/heads/main/apis.yml
+name: Tolgee
+kind: company
+description: Tolgee is an open-source localization platform for translating web and
+  mobile applications. It provides in-context translation, AI-assisted machine translation,
+  framework SDKs, a CLI, and a REST API. Teams can self-host the open-source platform
+  for free via Docker or use Tolgee Cloud (app.tolgee.io). The REST API exposes projects,
+  localization keys, translations, languages, import/export, and screenshots, authenticated
+  with a project API key sent in the X-API-Key header.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Localization
+- i18n
+- Translation
+- Open Source
+- Developer Tools
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: tolgee:projects
+  name: Tolgee Projects API
+  tags:
+  - Projects
+  - Organizations
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.tolgee.io/api
+  baseURL: https://app.tolgee.io
+  properties:
+  - url: https://docs.tolgee.io/api
+    type: Documentation
+  - url: https://docs.tolgee.io/api
+    type: APIReference
+  - url: openapi/tolgee-openapi.yml
+    type: OpenAPI
+  description: Create, list, retrieve, update, and delete localization projects, and
+    inspect the current API key's project context, on Tolgee Cloud or a self-hosted
+    instance.
+- aid: tolgee:keys
+  name: Tolgee Keys API
+  tags:
+  - Keys
+  - Localization
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.tolgee.io/api
+  baseURL: https://app.tolgee.io
+  properties:
+  - url: https://docs.tolgee.io/api
+    type: Documentation
+  - url: https://docs.tolgee.io/api
+    type: APIReference
+  - url: openapi/tolgee-openapi.yml
+    type: OpenAPI
+  description: CRUD and bulk operations for translation keys within a project, including
+    creating a key with translations, searching keys, and complex key editing.
+- aid: tolgee:translations
+  name: Tolgee Translations API
+  tags:
+  - Translations
+  - i18n
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.tolgee.io/api/get-translations
+  baseURL: https://app.tolgee.io
+  properties:
+  - url: https://docs.tolgee.io/api/get-translations
+    type: Documentation
+  - url: https://docs.tolgee.io/api
+    type: APIReference
+  - url: openapi/tolgee-openapi.yml
+    type: OpenAPI
+  description: Retrieve, create, and update translations for keys, set translation
+    state, mark values outdated, and read translation history within a project.
+- aid: tolgee:languages
+  name: Tolgee Languages API
+  tags:
+  - Languages
+  - Locales
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.tolgee.io/api
+  baseURL: https://app.tolgee.io
+  properties:
+  - url: https://docs.tolgee.io/api
+    type: Documentation
+  - url: https://docs.tolgee.io/api
+    type: APIReference
+  - url: openapi/tolgee-openapi.yml
+    type: OpenAPI
+  description: Create, list, update, and delete the languages (locales) configured
+    for a project.
+- aid: tolgee:import-export
+  name: Tolgee Import/Export API
+  tags:
+  - Import
+  - Export
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.tolgee.io/platform/projects_and_organizations/export
+  baseURL: https://app.tolgee.io
+  properties:
+  - url: https://docs.tolgee.io/platform/projects_and_organizations/export
+    type: Documentation
+  - url: https://docs.tolgee.io/api
+    type: APIReference
+  - url: openapi/tolgee-openapi.yml
+    type: OpenAPI
+  description: Export project translations as a ZIP of localization files (JSON, PO,
+    XLIFF, Apple strings, Android XML, and more) and import translation files with
+    a multi-step conflict-resolution workflow.
+- aid: tolgee:screenshots
+  name: Tolgee Screenshots API
+  tags:
+  - Screenshots
+  - Context
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.tolgee.io/api
+  baseURL: https://app.tolgee.io
+  properties:
+  - url: https://docs.tolgee.io/api
+    type: Documentation
+  - url: https://docs.tolgee.io/api
+    type: APIReference
+  - url: openapi/tolgee-openapi.yml
+    type: OpenAPI
+  description: Upload, list, and delete screenshots attached to localization keys to
+    give translators visual in-context reference.
+common:
+- type: GitHubOrganization
+  url: https://github.com/tolgee
+- type: LinkedIn
+  url: https://www.linkedin.com/company/tolgee
+- type: Website
+  url: https://tolgee.io
+- type: Documentation
+  url: https://docs.tolgee.io
+- type: Plans
+  url: plans/tolgee-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/tolgee-rate-limits.yml
+- type: FinOps
+  url: finops/tolgee-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
