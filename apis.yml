@@ -124,6 +124,10 @@ apis:
   description: Upload, list, and delete screenshots attached to localization keys to
     give translators visual in-context reference.
 common:
+- type: DomainSecurity
+  url: security/tolgee-domain-security.yml
+- type: Authentication
+  url: authentication/tolgee-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/tolgee
 - type: LinkedIn
@@ -138,6 +142,8 @@ common:
   url: rate-limits/tolgee-rate-limits.yml
 - type: FinOps
   url: finops/tolgee-finops.yml
+- type: Blog
+  url: https://tolgee.io/blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

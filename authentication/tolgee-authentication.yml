@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/tolgee-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: Project API key prefixed with `tgpak_`. Scoped to a single project.
+  sources:
+  - openapi/tolgee-openapi.yml

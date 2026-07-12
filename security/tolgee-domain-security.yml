@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: tolgee.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 11 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: docs.tolgee.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 22 23:43:45 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: app.tolgee.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 21 13:17:34 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: tolgee.io
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
