@@ -1,0 +1,14 @@
+{
+  "repo": "tolgee",
+  "feeds": [
+    {
+      "source": "https://tolgee.io/blog",
+      "feed_url": "https://tolgee.io/blog",
+      "title": "Tolgee Blog",
+      "saved": 0,
+      "error": "parse_failed"
+    }
+  ],
+  "fetched": "2026-07-11T11:43:46Z",
+  "post_count": 18
+}
