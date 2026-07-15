@@ -124,6 +124,8 @@ apis:
   description: Upload, list, and delete screenshots attached to localization keys to
     give translators visual in-context reference.
 common:
+- type: AgenticAccess
+  url: agentic-access/tolgee-agentic-access.yml
 - type: DomainSecurity
   url: security/tolgee-domain-security.yml
 - type: Authentication
