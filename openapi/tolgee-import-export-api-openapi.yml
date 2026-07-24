@@ -1,0 +1,157 @@
+openapi: 3.0.1
+info:
+  title: Tolgee API Keys Import/Export API
+  description: Subset of the Tolgee localization platform REST API covering projects, keys, translations, languages, import/export, and screenshots. Tolgee is open source and can be self-hosted; this specification targets Tolgee Cloud at https://app.tolgee.io. Project-scoped resources are authenticated with a Project API key (prefixed `tgpak_`) sent in the `X-API-Key` header. A Project API key is bound to a single project, so endpoints that implicitly operate on "the current project" (such as export) are accessible when authenticated with that key.
+  termsOfService: https://tolgee.io/terms_and_conditions
+  contact:
+    name: Tolgee Support
+    email: support@tolgee.io
+  license:
+    name: Source available / AGPL and commercial (self-hosted)
+    url: https://docs.tolgee.io/platform/self_hosting/licensing
+  version: v2
+servers:
+- url: https://app.tolgee.io
+  description: Tolgee Cloud
+security:
+- ApiKeyAuth: []
+tags:
+- name: Import/Export
+  description: Export localization files and import translation data.
+paths:
+  /v2/projects/export:
+    get:
+      operationId: exportData
+      tags:
+      - Import/Export
+      summary: Export translations
+      description: Exports the current project's translations as a downloadable archive (ZIP) or single file. The project is determined by the Project API key.
+      parameters:
+      - name: format
+        in: query
+        required: false
+        description: Target file format.
+        schema:
+          type: string
+          enum:
+          - JSON
+          - JSON_TOLGEE
+          - XLIFF
+          - PO
+          - APPLE_STRINGS
+          - APPLE_XLIFF
+          - ANDROID_XML
+          - FLUTTER_ARB
+          - PROPERTIES
+          default: JSON
+      - name: languages
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: filterState
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - UNTRANSLATED
+            - TRANSLATED
+            - REVIEWED
+      - name: filterNamespace
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: structureDelimiter
+        in: query
+        required: false
+        description: Character that introduces nesting in structured output (empty disables nesting).
+        schema:
+          type: string
+          default: .
+      - name: zip
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /v2/projects/{projectId}/import:
+    parameters:
+    - $ref: '#/components/parameters/ProjectId'
+    post:
+      operationId: addImportFiles
+      tags:
+      - Import/Export
+      summary: Add files to import
+      description: Uploads one or more translation files to begin the import process. Conflicts are resolved in subsequent steps before applying.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        '200':
+          description: OK
+  /v2/projects/{projectId}/import/apply:
+    parameters:
+    - $ref: '#/components/parameters/ProjectId'
+    put:
+      operationId: applyImport
+      tags:
+      - Import/Export
+      summary: Apply staged import
+      parameters:
+      - name: forceMode
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - OVERRIDE
+          - KEEP
+          - 'NO'
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      description: Numeric project identifier.
+      schema:
+        type: integer
+        format: int64
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Project API key prefixed with `tgpak_`. Scoped to a single project.

@@ -1,0 +1,65 @@
+openapi: 3.0.1
+info:
+  title: Tolgee API Keys API
+  description: Subset of the Tolgee localization platform REST API covering projects, keys, translations, languages, import/export, and screenshots. Tolgee is open source and can be self-hosted; this specification targets Tolgee Cloud at https://app.tolgee.io. Project-scoped resources are authenticated with a Project API key (prefixed `tgpak_`) sent in the `X-API-Key` header. A Project API key is bound to a single project, so endpoints that implicitly operate on "the current project" (such as export) are accessible when authenticated with that key.
+  termsOfService: https://tolgee.io/terms_and_conditions
+  contact:
+    name: Tolgee Support
+    email: support@tolgee.io
+  license:
+    name: Source available / AGPL and commercial (self-hosted)
+    url: https://docs.tolgee.io/platform/self_hosting/licensing
+  version: v2
+servers:
+- url: https://app.tolgee.io
+  description: Tolgee Cloud
+security:
+- ApiKeyAuth: []
+tags:
+- name: API Keys
+  description: Inspect the current API key.
+paths:
+  /v2/api-keys/current:
+    get:
+      operationId: getCurrentApiKey
+      tags:
+      - API Keys
+      summary: Get the current API key
+      description: Returns information about the Project API key used to authenticate the request, including its scopes and associated project.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyModel'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    ApiKeyModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+        projectId:
+          type: integer
+          format: int64
+        scopes:
+          type: array
+          items:
+            type: string
+        username:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Project API key prefixed with `tgpak_`. Scoped to a single project.

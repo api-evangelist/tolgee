@@ -1,0 +1,249 @@
+openapi: 3.0.1
+info:
+  title: Tolgee API Keys Translations API
+  description: Subset of the Tolgee localization platform REST API covering projects, keys, translations, languages, import/export, and screenshots. Tolgee is open source and can be self-hosted; this specification targets Tolgee Cloud at https://app.tolgee.io. Project-scoped resources are authenticated with a Project API key (prefixed `tgpak_`) sent in the `X-API-Key` header. A Project API key is bound to a single project, so endpoints that implicitly operate on "the current project" (such as export) are accessible when authenticated with that key.
+  termsOfService: https://tolgee.io/terms_and_conditions
+  contact:
+    name: Tolgee Support
+    email: support@tolgee.io
+  license:
+    name: Source available / AGPL and commercial (self-hosted)
+    url: https://docs.tolgee.io/platform/self_hosting/licensing
+  version: v2
+servers:
+- url: https://app.tolgee.io
+  description: Tolgee Cloud
+security:
+- ApiKeyAuth: []
+tags:
+- name: Translations
+  description: Read and write translations and their states.
+paths:
+  /v2/projects/{projectId}/translations:
+    parameters:
+    - $ref: '#/components/parameters/ProjectId'
+    get:
+      operationId: getTranslations
+      tags:
+      - Translations
+      summary: Get translations in project
+      description: Returns a paginated, filterable view of keys and their translations.
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      - name: languages
+        in: query
+        required: false
+        description: Language tags to return; all languages if omitted.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: filterState
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - UNTRANSLATED
+            - TRANSLATED
+            - REVIEWED
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeysWithTranslationsPagedModel'
+    put:
+      operationId: setTranslations
+      tags:
+      - Translations
+      summary: Update translations for an existing key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetTranslationsRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetTranslationsResponse'
+    post:
+      operationId: createOrUpdateTranslations
+      tags:
+      - Translations
+      summary: Create a key or update its translations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetTranslationsRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetTranslationsResponse'
+  /v2/projects/{projectId}/translations/{translationId}/set-state/{state}:
+    parameters:
+    - $ref: '#/components/parameters/ProjectId'
+    - name: translationId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: state
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - UNTRANSLATED
+        - TRANSLATED
+        - REVIEWED
+    put:
+      operationId: setTranslationState
+      tags:
+      - Translations
+      summary: Set translation state
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslationModel'
+components:
+  schemas:
+    SetTranslationsResponse:
+      type: object
+      properties:
+        keyId:
+          type: integer
+          format: int64
+        keyName:
+          type: string
+        translations:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/TranslationModel'
+    SetTranslationsRequest:
+      type: object
+      required:
+      - key
+      - translations
+      properties:
+        key:
+          type: string
+        namespace:
+          type: string
+        translations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of language tag to translation text.
+    PageMeta:
+      type: object
+      properties:
+        size:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        number:
+          type: integer
+          format: int32
+    TranslationModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        text:
+          type: string
+        state:
+          type: string
+          enum:
+          - UNTRANSLATED
+          - TRANSLATED
+          - REVIEWED
+        auto:
+          type: boolean
+        outdated:
+          type: boolean
+    KeysWithTranslationsPagedModel:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            keys:
+              type: array
+              items:
+                type: object
+                properties:
+                  keyId:
+                    type: integer
+                    format: int64
+                  keyName:
+                    type: string
+                  keyNamespace:
+                    type: string
+                  translations:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/TranslationModel'
+        page:
+          $ref: '#/components/schemas/PageMeta'
+  parameters:
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Zero-based page index.
+      schema:
+        type: integer
+        format: int32
+        default: 0
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      description: Numeric project identifier.
+      schema:
+        type: integer
+        format: int64
+    Size:
+      name: size
+      in: query
+      required: false
+      description: Page size.
+      schema:
+        type: integer
+        format: int32
+        default: 20
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Project API key prefixed with `tgpak_`. Scoped to a single project.
