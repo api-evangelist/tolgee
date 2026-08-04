@@ -1,0 +1,26 @@
+{
+  "provider": "tolgee",
+  "sources": [
+    "tolgee-api-keys-api-openapi.yml",
+    "tolgee-import-export-api-openapi.yml",
+    "tolgee-keys-api-openapi.yml",
+    "tolgee-languages-api-openapi.yml",
+    "tolgee-projects-api-openapi.yml",
+    "tolgee-screenshots-api-openapi.yml",
+    "tolgee-translations-api-openapi.yml"
+  ],
+  "outputs": [
+    "tolgee-api-keys-api-openapi.yml",
+    "tolgee-import-export-api-openapi.yml",
+    "tolgee-keys-api-openapi.yml",
+    "tolgee-languages-api-openapi.yml",
+    "tolgee-projects-api-openapi.yml",
+    "tolgee-screenshots-api-openapi.yml",
+    "tolgee-translations-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
