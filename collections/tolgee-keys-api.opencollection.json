@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tolgee API Keys API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/keys",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based page index."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Page size."
+              }
+            ]
+          },
+          "docs": "List keys"
+        },
+        {
+          "info": {
+            "name": "Create a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/keys",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a key and, optionally, its translations in one request."
+        },
+        {
+          "info": {
+            "name": "Delete a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/keys/:id",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a key"
+        },
+        {
+          "info": {
+            "name": "Search for keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/keys/search",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "languageTag",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search for keys"
+        },
+        {
+          "info": {
+            "name": "Import keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/keys/import",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk-creates keys with translations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

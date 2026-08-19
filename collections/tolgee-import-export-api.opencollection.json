@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tolgee API Keys Import/Export API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Import/Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export translations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/projects/export",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Target file format."
+              },
+              {
+                "name": "languages",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filterState",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filterNamespace",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "structureDelimiter",
+                "value": "",
+                "type": "query",
+                "description": "Character that introduces nesting in structured output (empty disables nesting)."
+              },
+              {
+                "name": "zip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Exports the current project's translations as a downloadable archive (ZIP) or single file. The project is determined by the Project API key."
+        },
+        {
+          "info": {
+            "name": "Add files to import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/import",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads one or more translation files to begin the import process. Conflicts are resolved in subsequent steps before applying."
+        },
+        {
+          "info": {
+            "name": "Apply staged import",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/import/apply",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              },
+              {
+                "name": "forceMode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Apply staged import"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

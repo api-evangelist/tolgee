@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tolgee API Keys Languages API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Languages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List languages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/languages",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based page index."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Page size."
+              }
+            ]
+          },
+          "docs": "List languages"
+        },
+        {
+          "info": {
+            "name": "Create a language",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/languages",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a language"
+        },
+        {
+          "info": {
+            "name": "Update a language",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/languages/:languageId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              },
+              {
+                "name": "languageId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a language"
+        },
+        {
+          "info": {
+            "name": "Delete a language",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/languages/:languageId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              },
+              {
+                "name": "languageId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a language"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

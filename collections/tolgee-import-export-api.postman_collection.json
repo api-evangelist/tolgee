@@ -1,0 +1,436 @@
+{
+  "item": [
+    {
+      "id": "e325ea81-b634-4df1-b20a-c1a05d549a2c",
+      "name": "Import/Export",
+      "description": {
+        "content": "Export localization files and import translation data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a97482ef-350d-4c1c-b88d-e0c887337f3d",
+          "name": "Export translations",
+          "request": {
+            "name": "Export translations",
+            "description": {
+              "content": "Exports the current project's translations as a downloadable archive (ZIP) or single file. The project is determined by the Project API key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "projects",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "JSON",
+                  "description": "Target file format."
+                },
+                {
+                  "disabled": false,
+                  "key": "languages",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "languages",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterState",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterState",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterNamespace",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterNamespace",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "structureDelimiter",
+                  "value": ".",
+                  "description": "Character that introduces nesting in structured output (empty disables nesting)."
+                },
+                {
+                  "disabled": false,
+                  "key": "zip",
+                  "value": "true"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/zip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f9aa6f7-bcd5-4e45-80e5-659bdfb7b4bd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "projects",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "JSON"
+                    },
+                    {
+                      "key": "languages",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "languages",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterState",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterState",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterNamespace",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterNamespace",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "structureDelimiter",
+                      "value": "."
+                    },
+                    {
+                      "key": "zip",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/zip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 2932\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cabb50cc-c704-4eee-b1ff-7a643b3c575b",
+          "name": "Add files to import",
+          "request": {
+            "name": "Add files to import",
+            "description": {
+              "content": "Uploads one or more translation files to begin the import process. Conflicts are resolved in subsequent steps before applying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "projects",
+                ":projectId",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Numeric project identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "files",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cfc8e5f6-5fa9-459f-89b1-5117b64ad74f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Numeric project identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c70d4d77-d6e4-4eeb-ab0a-f56afa76a021",
+          "name": "Apply staged import",
+          "request": {
+            "name": "Apply staged import",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "projects",
+                ":projectId",
+                "import",
+                "apply"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "forceMode",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Numeric project identifier."
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c533a28a-526e-4121-ac22-572b2b47a393",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "projects",
+                    ":projectId",
+                    "import",
+                    "apply"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "forceMode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Numeric project identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.tolgee.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "834d9717-341f-41a3-928a-44a9b8049f70",
+    "name": "Tolgee API Keys Import/Export API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Subset of the Tolgee localization platform REST API covering projects, keys, translations, languages, import/export, and screenshots. Tolgee is open source and can be self-hosted; this specification targets Tolgee Cloud at https://app.tolgee.io. Project-scoped resources are authenticated with a Project API key (prefixed `tgpak_`) sent in the `X-API-Key` header. A Project API key is bound to a single project, so endpoints that implicitly operate on \"the current project\" (such as export) are accessible when authenticated with that key.\n\nContact Support:\n Name: Tolgee Support\n Email: support@tolgee.io",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tolgee API Keys Screenshots API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Screenshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List screenshots for a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/keys/:keyId/screenshots",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              },
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List screenshots for a key"
+        },
+        {
+          "info": {
+            "name": "Upload a screenshot for a key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/keys/:keyId/screenshots",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              },
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "screenshot",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a screenshot for a key"
+        },
+        {
+          "info": {
+            "name": "Delete a screenshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.tolgee.io/v2/projects/:projectId/keys/:keyId/screenshots/:screenshotId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Numeric project identifier."
+              },
+              {
+                "name": "keyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "screenshotId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a screenshot"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
