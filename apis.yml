@@ -26,6 +26,12 @@ tags:
 - Localization
 - i18n
 - Translation
+- Open-Source
+- Developer Tools
+tags_raw:
+- Localization
+- i18n
+- Translation
 - Open Source
 - Developer Tools
 created: '2026-06-21'
@@ -38,6 +44,8 @@ apis:
   humanURL: https://docs.tolgee.io/api
   baseURL: https://app.tolgee.io
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
@@ -56,6 +64,8 @@ apis:
   humanURL: https://docs.tolgee.io/api
   baseURL: https://app.tolgee.io
   tags:
+  - Import Export
+  tags_raw:
   - Import/Export
   properties:
   - type: OpenAPI
@@ -92,6 +102,8 @@ apis:
   humanURL: https://docs.tolgee.io/api
   baseURL: https://app.tolgee.io
   tags:
+  - Language
+  tags_raw:
   - Languages
   properties:
   - type: OpenAPI
@@ -110,6 +122,8 @@ apis:
   humanURL: https://docs.tolgee.io/api
   baseURL: https://app.tolgee.io
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
