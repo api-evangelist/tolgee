@@ -8,6 +8,18 @@ description: Tolgee is an open-source localization platform for translating web 
   for free via Docker or use Tolgee Cloud (app.tolgee.io). The REST API exposes projects,
   localization keys, translations, languages, import/export, and screenshots, authenticated
   with a project API key sent in the X-API-Key header.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
