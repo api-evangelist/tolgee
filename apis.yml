@@ -76,7 +76,7 @@ apis:
   humanURL: https://docs.tolgee.io/api
   baseURL: https://app.tolgee.io
   tags:
-  - Import Export
+  - Import/Export
   tags_raw:
   - Import/Export
   properties:
