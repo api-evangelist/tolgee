@@ -2,12 +2,11 @@ aid: tolgee
 url: https://raw.githubusercontent.com/api-evangelist/tolgee/refs/heads/main/apis.yml
 name: Tolgee
 kind: company
-description: Tolgee is an open-source localization platform for translating web and
-  mobile applications. It provides in-context translation, AI-assisted machine translation,
-  framework SDKs, a CLI, and a REST API. Teams can self-host the open-source platform
-  for free via Docker or use Tolgee Cloud (app.tolgee.io). The REST API exposes projects,
-  localization keys, translations, languages, import/export, and screenshots, authenticated
-  with a project API key sent in the X-API-Key header.
+description: Tolgee is an open-source localization platform for translating web and mobile applications.
+  It provides in-context translation, AI-assisted machine translation, framework SDKs, a CLI, and a REST
+  API. Teams can self-host the open-source platform for free via Docker or use Tolgee Cloud (app.tolgee.io).
+  The REST API exposes projects, localization keys, translations, languages, import/export, and screenshots,
+  authenticated with a project API key sent in the X-API-Key header.
 deliveryModel:
   model: saas
   open_source: false
@@ -40,14 +39,16 @@ tags:
 - Translation
 - Open-Source
 - Developer Tools
+- Internationalization
 tags_raw:
 - Localization
 - i18n
 - Translation
 - Open Source
 - Developer Tools
+- Internationalization
 created: '2026-06-21'
-modified: '2026-06-21'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: tolgee:tolgee-api-keys-api
