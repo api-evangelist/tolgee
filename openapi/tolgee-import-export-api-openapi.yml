@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Tolgee API Keys Import/Export API
-  description: Subset of the Tolgee localization platform REST API covering projects, keys, translations, languages, import/export, and screenshots. Tolgee is open source and can be self-hosted; this specification targets Tolgee Cloud at https://app.tolgee.io. Project-scoped resources are authenticated with a Project API key (prefixed `tgpak_`) sent in the `X-API-Key` header. A Project API key is bound to a single project, so endpoints that implicitly operate on "the current project" (such as export) are accessible when authenticated with that key.
+  title: Tolgee Import/Export API
+  description: Subset of the Tolgee localization platform REST API covering projects, keys, translations, languages, import/export, and screenshots.
   termsOfService: https://tolgee.io/terms_and_conditions
   contact:
     name: Tolgee Support
@@ -16,14 +16,14 @@ servers:
 security:
 - ApiKeyAuth: []
 tags:
-- name: Import/Export
+- name: Import Export
   description: Export localization files and import translation data.
 paths:
   /v2/projects/export:
     get:
       operationId: exportData
       tags:
-      - Import/Export
+      - Import Export
       summary: Export translations
       description: Exports the current project's translations as a downloadable archive (ZIP) or single file. The project is determined by the Project API key.
       parameters:
@@ -100,7 +100,7 @@ paths:
     post:
       operationId: addImportFiles
       tags:
-      - Import/Export
+      - Import Export
       summary: Add files to import
       description: Uploads one or more translation files to begin the import process. Conflicts are resolved in subsequent steps before applying.
       requestBody:
@@ -124,7 +124,7 @@ paths:
     put:
       operationId: applyImport
       tags:
-      - Import/Export
+      - Import Export
       summary: Apply staged import
       parameters:
       - name: forceMode

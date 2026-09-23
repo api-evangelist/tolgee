@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Tolgee API Keys Screenshots API
-  description: Subset of the Tolgee localization platform REST API covering projects, keys, translations, languages, import/export, and screenshots. Tolgee is open source and can be self-hosted; this specification targets Tolgee Cloud at https://app.tolgee.io. Project-scoped resources are authenticated with a Project API key (prefixed `tgpak_`) sent in the `X-API-Key` header. A Project API key is bound to a single project, so endpoints that implicitly operate on "the current project" (such as export) are accessible when authenticated with that key.
+  title: Tolgee Screenshots API
+  description: Subset of the Tolgee localization platform REST API covering projects, keys, translations, languages, import/export, and screenshots.
   termsOfService: https://tolgee.io/terms_and_conditions
   contact:
     name: Tolgee Support
@@ -86,7 +86,26 @@ paths:
         '200':
           description: OK
 components:
+  parameters:
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      description: Numeric project identifier.
+      schema:
+        type: integer
+        format: int64
   schemas:
+    ScreenshotListModel:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            screenshots:
+              type: array
+              items:
+                $ref: '#/components/schemas/ScreenshotModel'
     ScreenshotModel:
       type: object
       properties:
@@ -101,25 +120,6 @@ components:
           type: integer
         height:
           type: integer
-    ScreenshotListModel:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            screenshots:
-              type: array
-              items:
-                $ref: '#/components/schemas/ScreenshotModel'
-  parameters:
-    ProjectId:
-      name: projectId
-      in: path
-      required: true
-      description: Numeric project identifier.
-      schema:
-        type: integer
-        format: int64
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

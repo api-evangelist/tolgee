@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Tolgee API Keys Translations API
-  description: Subset of the Tolgee localization platform REST API covering projects, keys, translations, languages, import/export, and screenshots. Tolgee is open source and can be self-hosted; this specification targets Tolgee Cloud at https://app.tolgee.io. Project-scoped resources are authenticated with a Project API key (prefixed `tgpak_`) sent in the `X-API-Key` header. A Project API key is bound to a single project, so endpoints that implicitly operate on "the current project" (such as export) are accessible when authenticated with that key.
+  title: Tolgee Translations API
+  description: Subset of the Tolgee localization platform REST API covering projects, keys, translations, languages, import/export, and screenshots.
   termsOfService: https://tolgee.io/terms_and_conditions
   contact:
     name: Tolgee Support
@@ -130,48 +130,6 @@ paths:
                 $ref: '#/components/schemas/TranslationModel'
 components:
   schemas:
-    SetTranslationsResponse:
-      type: object
-      properties:
-        keyId:
-          type: integer
-          format: int64
-        keyName:
-          type: string
-        translations:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/TranslationModel'
-    SetTranslationsRequest:
-      type: object
-      required:
-      - key
-      - translations
-      properties:
-        key:
-          type: string
-        namespace:
-          type: string
-        translations:
-          type: object
-          additionalProperties:
-            type: string
-          description: Map of language tag to translation text.
-    PageMeta:
-      type: object
-      properties:
-        size:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int32
-        number:
-          type: integer
-          format: int32
     TranslationModel:
       type: object
       properties:
@@ -214,16 +172,49 @@ components:
                       $ref: '#/components/schemas/TranslationModel'
         page:
           $ref: '#/components/schemas/PageMeta'
+    SetTranslationsResponse:
+      type: object
+      properties:
+        keyId:
+          type: integer
+          format: int64
+        keyName:
+          type: string
+        translations:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/TranslationModel'
+    SetTranslationsRequest:
+      type: object
+      required:
+      - key
+      - translations
+      properties:
+        key:
+          type: string
+        namespace:
+          type: string
+        translations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of language tag to translation text.
+    PageMeta:
+      type: object
+      properties:
+        size:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        number:
+          type: integer
+          format: int32
   parameters:
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Zero-based page index.
-      schema:
-        type: integer
-        format: int32
-        default: 0
     ProjectId:
       name: projectId
       in: path
@@ -241,6 +232,15 @@ components:
         type: integer
         format: int32
         default: 20
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Zero-based page index.
+      schema:
+        type: integer
+        format: int32
+        default: 0
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

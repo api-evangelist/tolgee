@@ -1,13 +1,7 @@
 {
   "provider": "tolgee",
   "sources": [
-    "tolgee-api-keys-api-openapi.yml",
-    "tolgee-import-export-api-openapi.yml",
-    "tolgee-keys-api-openapi.yml",
-    "tolgee-languages-api-openapi.yml",
-    "tolgee-projects-api-openapi.yml",
-    "tolgee-screenshots-api-openapi.yml",
-    "tolgee-translations-api-openapi.yml"
+    "_original/tolgee-openapi.yml"
   ],
   "outputs": [
     "tolgee-api-keys-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "tolgee-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "tolgee-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tolgee-import-export-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tolgee-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tolgee-languages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tolgee-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tolgee-screenshots-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tolgee-translations-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
