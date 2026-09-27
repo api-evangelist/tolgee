@@ -120,10 +120,15 @@ paths:
         '200':
           description: OK
 components:
-  responses:
-    BadRequest:
-      description: Invalid request payload.
   parameters:
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      description: Numeric project identifier.
+      schema:
+        type: integer
+        format: int64
     Size:
       name: size
       in: query
@@ -133,14 +138,6 @@ components:
         type: integer
         format: int32
         default: 20
-    ProjectId:
-      name: projectId
-      in: path
-      required: true
-      description: Numeric project identifier.
-      schema:
-        type: integer
-        format: int64
     Page:
       name: page
       in: query
@@ -151,6 +148,33 @@ components:
         format: int32
         default: 0
   schemas:
+    PageMeta:
+      type: object
+      properties:
+        size:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        number:
+          type: integer
+          format: int32
+    PagedKeysModel:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            keys:
+              type: array
+              items:
+                $ref: '#/components/schemas/KeyModel'
+        page:
+          $ref: '#/components/schemas/PageMeta'
     KeyModel:
       type: object
       properties:
@@ -174,18 +198,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CreateKeyRequest'
-    PagedKeysModel:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            keys:
-              type: array
-              items:
-                $ref: '#/components/schemas/KeyModel'
-        page:
-          $ref: '#/components/schemas/PageMeta'
     CreateKeyRequest:
       type: object
       required:
@@ -204,21 +216,9 @@ components:
           type: array
           items:
             type: string
-    PageMeta:
-      type: object
-      properties:
-        size:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int32
-        number:
-          type: integer
-          format: int32
+  responses:
+    BadRequest:
+      description: Invalid request payload.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

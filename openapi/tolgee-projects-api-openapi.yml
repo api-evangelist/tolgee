@@ -108,78 +108,6 @@ paths:
           description: OK
 components:
   schemas:
-    LanguageRequest:
-      type: object
-      required:
-      - name
-      - tag
-      properties:
-        name:
-          type: string
-        tag:
-          type: string
-          description: BCP-47 language tag, e.g. en, de, fr-FR.
-        originalName:
-          type: string
-        flagEmoji:
-          type: string
-    PagedProjectsModel:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            projects:
-              type: array
-              items:
-                $ref: '#/components/schemas/ProjectModel'
-        page:
-          $ref: '#/components/schemas/PageMeta'
-    LanguageModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        tag:
-          type: string
-        originalName:
-          type: string
-        flagEmoji:
-          type: string
-        base:
-          type: boolean
-    ProjectModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        slug:
-          type: string
-        description:
-          type: string
-        baseLanguage:
-          $ref: '#/components/schemas/LanguageModel'
-    PageMeta:
-      type: object
-      properties:
-        size:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int32
-        number:
-          type: integer
-          format: int32
     CreateProjectRequest:
       type: object
       required:
@@ -201,13 +129,78 @@ components:
         organizationId:
           type: integer
           format: int64
-  responses:
-    BadRequest:
-      description: Invalid request payload.
-    NotFound:
-      description: Resource not found.
-    Unauthorized:
-      description: Missing or invalid API key.
+    LanguageModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tag:
+          type: string
+        originalName:
+          type: string
+        flagEmoji:
+          type: string
+        base:
+          type: boolean
+    PageMeta:
+      type: object
+      properties:
+        size:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        number:
+          type: integer
+          format: int32
+    PagedProjectsModel:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            projects:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProjectModel'
+        page:
+          $ref: '#/components/schemas/PageMeta'
+    LanguageRequest:
+      type: object
+      required:
+      - name
+      - tag
+      properties:
+        name:
+          type: string
+        tag:
+          type: string
+          description: BCP-47 language tag, e.g. en, de, fr-FR.
+        originalName:
+          type: string
+        flagEmoji:
+          type: string
+    ProjectModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        baseLanguage:
+          $ref: '#/components/schemas/LanguageModel'
   parameters:
     ProjectId:
       name: projectId
@@ -235,6 +228,13 @@ components:
         type: integer
         format: int32
         default: 0
+  responses:
+    BadRequest:
+      description: Invalid request payload.
+    NotFound:
+      description: Resource not found.
+    Unauthorized:
+      description: Missing or invalid API key.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

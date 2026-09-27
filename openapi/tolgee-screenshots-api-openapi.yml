@@ -86,26 +86,7 @@ paths:
         '200':
           description: OK
 components:
-  parameters:
-    ProjectId:
-      name: projectId
-      in: path
-      required: true
-      description: Numeric project identifier.
-      schema:
-        type: integer
-        format: int64
   schemas:
-    ScreenshotListModel:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            screenshots:
-              type: array
-              items:
-                $ref: '#/components/schemas/ScreenshotModel'
     ScreenshotModel:
       type: object
       properties:
@@ -120,6 +101,25 @@ components:
           type: integer
         height:
           type: integer
+    ScreenshotListModel:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            screenshots:
+              type: array
+              items:
+                $ref: '#/components/schemas/ScreenshotModel'
+  parameters:
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      description: Numeric project identifier.
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

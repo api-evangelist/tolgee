@@ -129,91 +129,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/TranslationModel'
 components:
-  schemas:
-    TranslationModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        text:
-          type: string
-        state:
-          type: string
-          enum:
-          - UNTRANSLATED
-          - TRANSLATED
-          - REVIEWED
-        auto:
-          type: boolean
-        outdated:
-          type: boolean
-    KeysWithTranslationsPagedModel:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            keys:
-              type: array
-              items:
-                type: object
-                properties:
-                  keyId:
-                    type: integer
-                    format: int64
-                  keyName:
-                    type: string
-                  keyNamespace:
-                    type: string
-                  translations:
-                    type: object
-                    additionalProperties:
-                      $ref: '#/components/schemas/TranslationModel'
-        page:
-          $ref: '#/components/schemas/PageMeta'
-    SetTranslationsResponse:
-      type: object
-      properties:
-        keyId:
-          type: integer
-          format: int64
-        keyName:
-          type: string
-        translations:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/TranslationModel'
-    SetTranslationsRequest:
-      type: object
-      required:
-      - key
-      - translations
-      properties:
-        key:
-          type: string
-        namespace:
-          type: string
-        translations:
-          type: object
-          additionalProperties:
-            type: string
-          description: Map of language tag to translation text.
-    PageMeta:
-      type: object
-      properties:
-        size:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int32
-        number:
-          type: integer
-          format: int32
   parameters:
     ProjectId:
       name: projectId
@@ -241,6 +156,91 @@ components:
         type: integer
         format: int32
         default: 0
+  schemas:
+    TranslationModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        text:
+          type: string
+        state:
+          type: string
+          enum:
+          - UNTRANSLATED
+          - TRANSLATED
+          - REVIEWED
+        auto:
+          type: boolean
+        outdated:
+          type: boolean
+    PageMeta:
+      type: object
+      properties:
+        size:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        number:
+          type: integer
+          format: int32
+    SetTranslationsResponse:
+      type: object
+      properties:
+        keyId:
+          type: integer
+          format: int64
+        keyName:
+          type: string
+        translations:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/TranslationModel'
+    KeysWithTranslationsPagedModel:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            keys:
+              type: array
+              items:
+                type: object
+                properties:
+                  keyId:
+                    type: integer
+                    format: int64
+                  keyName:
+                    type: string
+                  keyNamespace:
+                    type: string
+                  translations:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/TranslationModel'
+        page:
+          $ref: '#/components/schemas/PageMeta'
+    SetTranslationsRequest:
+      type: object
+      required:
+      - key
+      - translations
+      properties:
+        key:
+          type: string
+        namespace:
+          type: string
+        translations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of language tag to translation text.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
