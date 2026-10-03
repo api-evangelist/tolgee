@@ -157,6 +157,48 @@ components:
         format: int32
         default: 0
   schemas:
+    SetTranslationsResponse:
+      type: object
+      properties:
+        keyId:
+          type: integer
+          format: int64
+        keyName:
+          type: string
+        translations:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/TranslationModel'
+    SetTranslationsRequest:
+      type: object
+      required:
+      - key
+      - translations
+      properties:
+        key:
+          type: string
+        namespace:
+          type: string
+        translations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of language tag to translation text.
+    PageMeta:
+      type: object
+      properties:
+        size:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        number:
+          type: integer
+          format: int32
     TranslationModel:
       type: object
       properties:
@@ -175,33 +217,6 @@ components:
           type: boolean
         outdated:
           type: boolean
-    PageMeta:
-      type: object
-      properties:
-        size:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int32
-        number:
-          type: integer
-          format: int32
-    SetTranslationsResponse:
-      type: object
-      properties:
-        keyId:
-          type: integer
-          format: int64
-        keyName:
-          type: string
-        translations:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/TranslationModel'
     KeysWithTranslationsPagedModel:
       type: object
       properties:
@@ -226,21 +241,6 @@ components:
                       $ref: '#/components/schemas/TranslationModel'
         page:
           $ref: '#/components/schemas/PageMeta'
-    SetTranslationsRequest:
-      type: object
-      required:
-      - key
-      - translations
-      properties:
-        key:
-          type: string
-        namespace:
-          type: string
-        translations:
-          type: object
-          additionalProperties:
-            type: string
-          description: Map of language tag to translation text.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

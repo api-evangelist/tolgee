@@ -119,6 +119,33 @@ components:
         format: int32
         default: 0
   schemas:
+    PagedLanguagesModel:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            languages:
+              type: array
+              items:
+                $ref: '#/components/schemas/LanguageModel'
+        page:
+          $ref: '#/components/schemas/PageMeta'
+    PageMeta:
+      type: object
+      properties:
+        size:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        number:
+          type: integer
+          format: int32
     LanguageModel:
       type: object
       properties:
@@ -135,21 +162,6 @@ components:
           type: string
         base:
           type: boolean
-    PageMeta:
-      type: object
-      properties:
-        size:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int32
-        number:
-          type: integer
-          format: int32
     LanguageRequest:
       type: object
       required:
@@ -165,18 +177,6 @@ components:
           type: string
         flagEmoji:
           type: string
-    PagedLanguagesModel:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            languages:
-              type: array
-              items:
-                $ref: '#/components/schemas/LanguageModel'
-        page:
-          $ref: '#/components/schemas/PageMeta'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

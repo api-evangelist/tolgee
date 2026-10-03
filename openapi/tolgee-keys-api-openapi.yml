@@ -148,6 +148,36 @@ components:
         format: int32
         default: 0
   schemas:
+    PagedKeysModel:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            keys:
+              type: array
+              items:
+                $ref: '#/components/schemas/KeyModel'
+        page:
+          $ref: '#/components/schemas/PageMeta'
+    CreateKeyRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        namespace:
+          type: string
+        translations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of language tag to translation text.
+        tags:
+          type: array
+          items:
+            type: string
     PageMeta:
       type: object
       properties:
@@ -163,18 +193,6 @@ components:
         number:
           type: integer
           format: int32
-    PagedKeysModel:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            keys:
-              type: array
-              items:
-                $ref: '#/components/schemas/KeyModel'
-        page:
-          $ref: '#/components/schemas/PageMeta'
     KeyModel:
       type: object
       properties:
@@ -198,24 +216,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CreateKeyRequest'
-    CreateKeyRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        namespace:
-          type: string
-        translations:
-          type: object
-          additionalProperties:
-            type: string
-          description: Map of language tag to translation text.
-        tags:
-          type: array
-          items:
-            type: string
   responses:
     BadRequest:
       description: Invalid request payload.
