@@ -92,14 +92,6 @@ paths:
           description: OK
 components:
   parameters:
-    ProjectId:
-      name: projectId
-      in: path
-      required: true
-      description: Numeric project identifier.
-      schema:
-        type: integer
-        format: int64
     Size:
       name: size
       in: query
@@ -118,19 +110,30 @@ components:
         type: integer
         format: int32
         default: 0
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      description: Numeric project identifier.
+      schema:
+        type: integer
+        format: int64
   schemas:
-    PagedLanguagesModel:
+    LanguageRequest:
       type: object
+      required:
+      - name
+      - tag
       properties:
-        _embedded:
-          type: object
-          properties:
-            languages:
-              type: array
-              items:
-                $ref: '#/components/schemas/LanguageModel'
-        page:
-          $ref: '#/components/schemas/PageMeta'
+        name:
+          type: string
+        tag:
+          type: string
+          description: BCP-47 language tag, e.g. en, de, fr-FR.
+        originalName:
+          type: string
+        flagEmoji:
+          type: string
     PageMeta:
       type: object
       properties:
@@ -162,21 +165,18 @@ components:
           type: string
         base:
           type: boolean
-    LanguageRequest:
+    PagedLanguagesModel:
       type: object
-      required:
-      - name
-      - tag
       properties:
-        name:
-          type: string
-        tag:
-          type: string
-          description: BCP-47 language tag, e.g. en, de, fr-FR.
-        originalName:
-          type: string
-        flagEmoji:
-          type: string
+        _embedded:
+          type: object
+          properties:
+            languages:
+              type: array
+              items:
+                $ref: '#/components/schemas/LanguageModel'
+        page:
+          $ref: '#/components/schemas/PageMeta'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

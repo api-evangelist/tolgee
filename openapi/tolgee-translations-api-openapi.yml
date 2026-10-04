@@ -130,14 +130,6 @@ paths:
                 $ref: '#/components/schemas/TranslationModel'
 components:
   parameters:
-    ProjectId:
-      name: projectId
-      in: path
-      required: true
-      description: Numeric project identifier.
-      schema:
-        type: integer
-        format: int64
     Size:
       name: size
       in: query
@@ -156,6 +148,14 @@ components:
         type: integer
         format: int32
         default: 0
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      description: Numeric project identifier.
+      schema:
+        type: integer
+        format: int64
   schemas:
     SetTranslationsResponse:
       type: object
@@ -169,21 +169,6 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/TranslationModel'
-    SetTranslationsRequest:
-      type: object
-      required:
-      - key
-      - translations
-      properties:
-        key:
-          type: string
-        namespace:
-          type: string
-        translations:
-          type: object
-          additionalProperties:
-            type: string
-          description: Map of language tag to translation text.
     PageMeta:
       type: object
       properties:
@@ -217,6 +202,21 @@ components:
           type: boolean
         outdated:
           type: boolean
+    SetTranslationsRequest:
+      type: object
+      required:
+      - key
+      - translations
+      properties:
+        key:
+          type: string
+        namespace:
+          type: string
+        translations:
+          type: object
+          additionalProperties:
+            type: string
+          description: Map of language tag to translation text.
     KeysWithTranslationsPagedModel:
       type: object
       properties:
