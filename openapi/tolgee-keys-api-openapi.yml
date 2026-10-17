@@ -121,33 +121,15 @@ paths:
           description: OK
 components:
   schemas:
-    PagedKeysModel:
+    ImportKeysRequest:
       type: object
+      required:
+      - keys
       properties:
-        _embedded:
-          type: object
-          properties:
-            keys:
-              type: array
-              items:
-                $ref: '#/components/schemas/KeyModel'
-        page:
-          $ref: '#/components/schemas/PageMeta'
-    PageMeta:
-      type: object
-      properties:
-        size:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int32
-        number:
-          type: integer
-          format: int32
+        keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateKeyRequest'
     CreateKeyRequest:
       type: object
       required:
@@ -166,6 +148,33 @@ components:
           type: array
           items:
             type: string
+    PageMeta:
+      type: object
+      properties:
+        size:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        number:
+          type: integer
+          format: int32
+    PagedKeysModel:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            keys:
+              type: array
+              items:
+                $ref: '#/components/schemas/KeyModel'
+        page:
+          $ref: '#/components/schemas/PageMeta'
     KeyModel:
       type: object
       properties:
@@ -180,25 +189,7 @@ components:
           type: array
           items:
             type: string
-    ImportKeysRequest:
-      type: object
-      required:
-      - keys
-      properties:
-        keys:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateKeyRequest'
   parameters:
-    Size:
-      name: size
-      in: query
-      required: false
-      description: Page size.
-      schema:
-        type: integer
-        format: int32
-        default: 20
     Page:
       name: page
       in: query
@@ -216,6 +207,15 @@ components:
       schema:
         type: integer
         format: int64
+    Size:
+      name: size
+      in: query
+      required: false
+      description: Page size.
+      schema:
+        type: integer
+        format: int32
+        default: 20
   responses:
     BadRequest:
       description: Invalid request payload.
